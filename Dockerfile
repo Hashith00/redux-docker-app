@@ -1,11 +1,11 @@
 # Use an official Node.js image as the base image
-FROM node:16-alpine
+FROM node:20-alpine
 
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package.json package-lock.json vite.config.js ./
+COPY package.json .
 
 # Install dependencies
 RUN npm install
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 8080
 
-# Command to run the React app
+# Command to serve the built React app
 CMD ["npm", "run", "dev"]
